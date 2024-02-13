@@ -1,0 +1,32 @@
+SQL QUERIES FOR HW
+
+--1
+SELECT COUNT(*) 
+FROM taxirides.green_taxi_rides;
+
+--2
+SELECT COUNT(DISTINCT(PULocationID))
+FROM taxirides.green_taxi_rides;
+
+SELECT COUNT(DISTINCT(PULocationID))
+FROM taxirides.materialized_table;
+
+--3
+SELECT COUNT(*)
+FROM taxirides.green_taxi_rides
+WHERE (fare_amount = 0);
+
+--4
+CREATE TABLE taxirides.green_taxi_rides_2
+PARTITION BY DATE(lpep_pickup_datetime)
+CLUSTER BY PUlocationID AS
+SELECT * FROM taxirides.green_taxi_rides;
+
+CREATE TABLE taxirides.green_taxi_rides_3
+PARTITION BY DATE(lpep_pickup_datetime)
+CLUSTER BY lpep_pickup_datetime AS
+SELECT * FROM taxirides.green_taxi_rides;
+
+--test for 4
+SELECT * FROM taxirides.green_taxi_rides_2;
+SELECT * FROM taxirides.green_taxi_rides_3;
