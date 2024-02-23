@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: staging
+    database: dtc-de-course-411418
+    schema: dbt_cjung
+
+    tables:
+      - name: green_trip_data
+      - name: yellow_trip_data
+      - name: fhv
